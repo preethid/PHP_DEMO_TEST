@@ -33,7 +33,7 @@ pipeline{
                           sh "scp -o StrictHostKeyChecking=no -r docker-files ${DEPLOY_SERVER}:/home/ec2-user"
                           sh "ssh -o StrictHostKeyChecking=no ${DEPLOY_SERVER} 'bash ~/docker-files/docker-script.sh'"
                          sh "ssh ${DEPLOy_SERVER} sudo docker login -u $USERNAME -p $PASSWORD"
-                         sh "ssh -o StrictHostKeyChecking=no ${DEPLOY_SERVER} 'bash ~/docker-files/docker-compose-script.sh ${IMAGE_NAME}'"
+                         sh "ssh  ${DEPLOY_SERVER} bash /home/ec2-user/docker-files/docker-compose-script.sh ${IMAGE_NAME}"
                          }
                         }
                     }
