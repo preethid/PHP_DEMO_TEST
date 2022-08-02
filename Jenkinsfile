@@ -11,7 +11,7 @@ pipeline{
             steps{
                 script{
                     sshagent(['jenkins-slave']) {
-                        withCredentials([usernamePassword(credentialsId: 'ssh-user', passwordVariable: 'PASSWORD', usernameVariable: 'USERNAME')]) {
+                        withCredentials([usernamePassword(credentialsId: 'docker-hub', passwordVariable: 'PASSWORD', usernameVariable: 'USERNAME')]) {
                          echo "Packing the code and create a docker image"
                         sh "scp -o StrictHostKeyChecking=no -r docker-files ${BUILD_SERVER}:/home/ec2-user"
                 sh "ssh -o StrictHostKeyChecking=no ${BUILD_SERVER} 'bash ~/docker-files/docker-script.sh'"
@@ -29,7 +29,7 @@ pipeline{
                   steps{
                     script{
                         sshagent(['jenkins-slave']) {
-                         withCredentials([usernamePassword(credentialsId: 'ssh-user', passwordVariable: 'PASSWORD', usernameVariable: 'USERNAME')]) {
+                         withCredentials([usernamePassword(credentialsId: 'docker-hub', passwordVariable: 'PASSWORD', usernameVariable: 'USERNAME')]) {
                           sh "scp -o StrictHostKeyChecking=no -r docker-files ${DEPLOY_SERVER}:/home/ec2-user"
                           sh "ssh -o StrictHostKeyChecking=no ${DEPLOY_SERVER} 'bash ~/docker-files/docker-script.sh'"
                          sh "ssh ${DEPLOy_SERVER} sudo docker login -u $USERNAME -p $PASSWORD"
