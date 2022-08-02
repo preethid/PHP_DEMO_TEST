@@ -1,8 +1,8 @@
 pipeline{
     agent none
     environment{
-        BUILD_SERVER='ec2-user@'
-        DEPLOY_SERVER='ec2-user@'
+        BUILD_SERVER='ec2-user@13.233.143.22'
+        DEPLOY_SERVER='ec2-user@35.154.249.199'
         IMAGE_NAME='devopstrainer/java-mvn-privaterepos:php$BUILD_NUMBER'
     }
     stages{
